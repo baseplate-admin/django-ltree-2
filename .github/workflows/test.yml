@@ -12,7 +12,7 @@ jobs:
         continue-on-error: false
         services:
             database:
-                image: postgres:12
+                image: postgres:16
                 env:
                     POSTGRES_USER: postgres
                     POSTGRES_PASSWORD: postgres
@@ -27,9 +27,9 @@ jobs:
             DJANGO_DATABASE_NAME: postgres
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
             - name: Set up Python
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4
               with:
                   python-version: ${{ matrix.python-version }}
             - uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
 
             - name: Run tests
               run: >-
-                  pytest -v -x
+                  poetry run pytest -v -x
                   --cov=django_ltree
                   --junitxml=junit/test-results-${{ matrix.python-version }}.xml
                   tests/
