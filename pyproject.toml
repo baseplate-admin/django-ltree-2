@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "django-ltree-2"
+version = "0.1.0"
+description = "Continual of django-ltree"
+authors = ["baseplate-admin <61817579+baseplate-admin@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "django_ltree"}]
+classifiers = [ 
+    "Development Status :: 4 - Beta",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+django = ">=5.0.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
