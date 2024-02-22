@@ -1,13 +1,11 @@
-import importlib
-
 from django.apps import AppConfig
 
 
 def register_pathfield():
     # Register field checks, lookups and functions
-    importlib.import_module("django_ltree.checks")
-    importlib.import_module("django_ltree.lookups")
-    importlib.import_module("django_ltree.functions")
+    from . import checks as checks
+    from . import lookups as lookups
+    from . import functions as functions
 
 
 class DjangoLtreeConfig(AppConfig):
