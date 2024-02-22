@@ -6,7 +6,7 @@ using the native Postgres extension `ltree`.
 Postgresql has already a optimized and very useful tree implementation for data.
 The extension is [ltree](https://www.postgresql.org/docs/9.6/static/ltree.html)
 
-This fork contains is a continuation of the work done by [`mariocesar`](https://github.com/mariocesar/) on [`django-ltree`](https://github.com/mariocesar/django-ltree).
+This fork contains is a continuation of the work done by [`mariocesar`](https://github.com/mariocesar/) on [`django-ltree`](https://github.com/mariocesar/django-ltree) and merges the work done by [`simkimsia`](https://github.com/simkimsia) on [`greendeploy-django-ltree`](https://github.com/GreenDeploy-io/greendeploy-django-ltree)
 
 <!--
 [![Test](https://github.com/mariocesar/django-ltree/actions/workflows/test.yml/badge.svg)](https://github.com/mariocesar/django-ltree/actions/workflows/test.yml)
