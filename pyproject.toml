@@ -27,6 +27,7 @@ django = ">=5.0.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.1"
+tox = "^4.13.0"
 
 [build-system]
 requires = ["poetry-core"]

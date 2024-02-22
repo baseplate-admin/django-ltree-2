@@ -1,4 +1,5 @@
 from django.db import models
+from typing import Any
 
 from .fields import PathField, PathValue
 from .managers import TreeManager
@@ -15,12 +16,8 @@ class TreeModel(models.Model):
     def label(self):
         return self.path[-1]
 
-    def get_ancestors_paths(self):  # type: () -> List[List[str]]
-        return [
-            PathValue(self.path[:n])
-            for n, p in enumerate(self.path)
-            if n > 0
-        ]
+    def get_ancestors_paths(self) -> list[list[str]]:
+        return [PathValue(self.path[:n]) for n, p in enumerate(self.path) if n > 0]
 
     def ancestors(self):
         return type(self)._default_manager.filter(path__ancestors=self.path)
@@ -44,7 +41,7 @@ class TreeModel(models.Model):
             .exclude(path=self.path)
         )
 
-    def add_child(self, slug, **kwargs):  # type:(str) -> Any
+    def add_child(self, slug: str, **kwargs) -> Any:
         assert "path" not in kwargs
         kwargs["path"] = self.path[:]
         kwargs["path"].append(slug)

@@ -101,4 +101,4 @@ class PathField(TextField):
         elif isinstance(value, (list, str)):
             return str(PathValue(value))
 
-        raise ValueError("Unknown value type {}".format(type(value)))
+        raise ValueError(f"Unknown value type {type(value)}")
