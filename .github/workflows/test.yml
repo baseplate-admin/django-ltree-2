@@ -44,15 +44,12 @@ jobs:
                   poetry run pip install -e .
 
             - name: Run tests
-              run: >-
-                  poetry run pytest -v -x
-                  --cov=django_ltree
-                  --junitxml=junit/test-results-${{ matrix.python-version }}.xml
-                  tests/
+              run: |
+                  poetry run pytest -v -x tests/
 
-            - name: Upload pytest test results
-              uses: actions/upload-artifact@v2
-              with:
-                  name: pytest-results-${{ matrix.python-version }}
-                  path: junit/test-results-${{ matrix.python-version }}.xml
-              if: ${{ always() }}
+            # - name: Upload pytest test results
+            #   uses: actions/upload-artifact@v2
+            #   with:
+            #       name: pytest-results-${{ matrix.python-version }}
+            #       path: junit/test-results-${{ matrix.python-version }}.xml
+            #   if: ${{ always() }}
