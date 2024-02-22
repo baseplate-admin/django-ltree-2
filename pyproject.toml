@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-ltree-2"
-version = "0.1.1"
+version = "0.1.2"
 description = "Continual of django-ltree"
 authors = ["baseplate-admin <61817579+baseplate-admin@users.noreply.github.com>"]
 license = "MIT"

@@ -12,14 +12,6 @@ This fork contains is a continuation of the work done by [`mariocesar`](https://
 [![Test](https://github.com/mariocesar/django-ltree/actions/workflows/test.yml/badge.svg)](https://github.com/mariocesar/django-ltree/actions/workflows/test.yml)
  -->
 
-## Links
-
--   Pypi https://pypi.org/project/django-ltree/
--   Source code https://github.com/mariocesar/django-ltree
--   Bugs https://github.com/mariocesar/django-ltree/issues
--   Contribute https://github.com/mariocesar/django-ltree/pulls
--   Documentation `TODO`
-
 ## Install
 
 ```py
