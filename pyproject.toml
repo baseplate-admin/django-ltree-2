@@ -19,6 +19,11 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/baseplate-admin/django-ltree-2/issues"
+"homepage" = "https://github.com/baseplate-admin/django-ltree-2"
+"repository" = "https://github.com/baseplate-admin/django-ltree-2"
+
 
 [tool.poetry.dependencies]
 python = ">=3.10"
