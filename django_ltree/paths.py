@@ -1,13 +1,11 @@
 import string
+import math
 from itertools import product
 
-from django_ltree.fields import PathValue
-import math
+from .fields import PathValue
 
 
 class PathGenerator(object):
-    # _default_label_size = 6  # Postgres limits this to 256
-
     def __init__(self, prefix=None, skip=None):
         combinations = string.digits + string.ascii_letters
 
