@@ -1,18 +1,21 @@
 import string
+import math
 from itertools import product
 
-from django_ltree.fields import PathValue
+from .fields import PathValue
 
 
 class PathGenerator(object):
-    _default_label_size = 6  # Postgres limits this to 256
+    def __init__(self, prefix=None, skip=None):
+        combinations = string.digits + string.ascii_letters
 
-    def __init__(self, prefix=None, skip=None, label_size=None):
         self.skip_paths = [] if skip is None else skip[:]
         self.path_prefix = prefix if prefix else []
         self.product_iterator = product(
-            string.digits + string.ascii_letters,
-            repeat=label_size or self._default_label_size,
+            combinations,
+            repeat=self.guess_the_label_size(
+                path_size=len(self.skip_paths), combination_size=len(combinations)
+            ),
         )
 
     def __iter__(self):
@@ -26,3 +29,31 @@ class PathGenerator(object):
                 return path
 
     next = __next__
+
+    @staticmethod
+    def guess_the_label_size(path_size: int, combination_size: int) -> int:
+        # The theoritical limit for this at the time of writing is 2_538_557_185_841_324_496 (python 3.12.2)
+        calculated_path_size = -1  # -1 is here for 0th index items
+        # The theoritical limit for this at the time of writing is 32 (python 3.12.2)
+        label_size = 0
+
+        # THIS IS AN VERY IMPORTANT CHECK
+        last = 0
+
+        while True:
+            possible_cominations = math.comb(combination_size, label_size)
+            if last > possible_cominations:
+                raise ValueError("We approached the limit of `math.comb`")
+
+            last = possible_cominations
+            calculated_path_size += possible_cominations
+
+            if calculated_path_size > path_size and label_size != 0:
+                break
+
+            label_size += 1
+
+        return label_size
+
+
+print(PathGenerator.guess_the_label_size(62, 62))
