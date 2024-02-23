@@ -2,7 +2,7 @@ import string
 import math
 from itertools import product
 
-# from .fields import PathValue
+from .fields import PathValue
 
 
 class PathGenerator(object):
