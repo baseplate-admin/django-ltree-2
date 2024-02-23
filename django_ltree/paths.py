@@ -1,7 +1,7 @@
 import string
 from itertools import product
 
-from django_ltree.fields import PathValue
+# from django_ltree.fields import PathValue
 import math
 
 
@@ -50,9 +50,12 @@ class PathGenerator(object):
             last = possible_cominations
             calculated_path_size += possible_cominations
 
-            if calculated_path_size >= path_size and label_size != 0:
+            if calculated_path_size > path_size and label_size != 0:
                 break
 
             label_size += 1
 
         return label_size
+
+
+print(PathGenerator.guess_the_label_size(62, 62))
