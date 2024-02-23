@@ -1,7 +1,7 @@
 import string
 from itertools import product
 
-# from django_ltree.fields import PathValue
+from django_ltree.fields import PathValue
 import math
 
 
@@ -56,6 +56,3 @@ class PathGenerator(object):
             label_size += 1
 
         return label_size
-
-
-print(PathGenerator.guess_the_label_size(62, 62))
