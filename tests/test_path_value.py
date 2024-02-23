@@ -16,7 +16,3 @@ def test_create():
         yield "beer"
 
     assert str(PathValue(generator())) == "100.bottles.of.beer"
-
-
-def test_automatic_generation_of_label():
-    pass
