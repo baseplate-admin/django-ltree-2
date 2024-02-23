@@ -259,5 +259,3 @@ def test_slicing(db):
     create_test_data()
     qs = Taxonomy.objects.all()
     assert qs[:3].count() == 3
-
-
