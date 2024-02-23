@@ -56,4 +56,3 @@ class PathGenerator(object):
         return label_size
 
 
-print(PathGenerator.guess_the_label_size(62, 62))
