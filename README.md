@@ -28,22 +28,16 @@ INSTALLED_APPS = [
 ]
 ```
 
-And make sure to run `django_ltree` migrations before you added the `PathField`
-
-```
-python manage.py migrate django_ltree
-```
-
-`django_ltree` migrations will install the `ltree` extension if not exist.
-
-You can alternatively specify the `django_ltree` dependency in the migrations of
-your applications that requires `PathField`, and run migrations smoothly.
+Then use it like this:
 
 ```python
-class Migration(migrations.Migration):
-    dependencies = [
-            ('django_ltree', '__latest__'),
-    ]
+
+from django_ltree.models import TreeModel
+
+
+class CustomTree(TreeModel):
+    ...
+
 ```
 
 ## Requires
@@ -51,6 +45,6 @@ class Migration(migrations.Migration):
 -   Django 5.0 or superior
 -   Python 3.10 or higher
 
-## Testing
+## Roadmaps
 
-Make sure you have Postgres installed. Then simply run `tox` in the root directory of the project.
+-   Write documentation on how to use this repository. (If you need a quick way to check things, please check the `tests/test_model.py` file)
