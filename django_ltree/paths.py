@@ -2,7 +2,7 @@ import string
 import math
 from itertools import product
 
-from .fields import PathValue
+# from .fields import PathValue
 
 
 class PathGenerator(object):
@@ -48,9 +48,12 @@ class PathGenerator(object):
             last = possible_cominations
             calculated_path_size += possible_cominations
 
-            if calculated_path_size > path_size and label_size != 0:
+            if calculated_path_size > (path_size + 1) and label_size != 0:
                 break
 
             label_size += 1
 
         return label_size
+
+
+print(PathGenerator.guess_the_label_size(62, 62))
