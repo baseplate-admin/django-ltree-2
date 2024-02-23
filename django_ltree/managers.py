@@ -27,7 +27,6 @@ class TreeManager(models.Manager):
         path_generator = PathGenerator(
             prefix,
             skip=paths_in_use.values_list("path", flat=True),
-            label_size=getattr(self.model, "label_size"),
         )
         kwargs["path"] = path_generator.next()
         return self.create(**kwargs)
