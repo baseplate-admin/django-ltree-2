@@ -261,6 +261,3 @@ def test_slicing(db):
     assert qs[:3].count() == 3
 
 
-def test_automatic_name_creation():
-    for i in range(0, 2_538_557_185_841_324_496):
-        Taxonomy.objects.create_child(name=i)
