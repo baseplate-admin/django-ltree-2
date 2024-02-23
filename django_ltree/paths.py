@@ -33,7 +33,7 @@ class PathGenerator(object):
     @staticmethod
     def guess_the_label_size(path_size: int, combination_size: int) -> int:
         # The theoritical limit for this at the time of writing is 2_538_557_185_841_324_496 (python 3.12.2)
-        calculated_path_size = -1
+        calculated_path_size = -1  # -1 is here for 0th index items
         # The theoritical limit for this at the time of writing is 32 (python 3.12.2)
         label_size = 0
 
