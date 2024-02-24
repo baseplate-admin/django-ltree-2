@@ -22,7 +22,7 @@ class PathGenerator(object):
     def __iter__(self) -> "PathGenerator":
         return self
 
-    def __next__(self) -> "PathValue" | None:
+    def __next__(self) -> "PathValue | None":
         for val in self.product_iterator:
             label = "".join(val)
             path = PathValue(
