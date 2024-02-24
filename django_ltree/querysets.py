@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from .models import TreeModel
 
 
-class TreeQuerySet(models.QuerySet):
+class TreeQuerySet(models.QuerySet):  # type: ignore
     def roots(self) -> models.QuerySet["TreeModel"]:
         return self.filter(path__depth=1)
 

@@ -1,8 +1,8 @@
 from django.core.checks import Warning, register
 
 
-@register
-def check_database_backend_is_postgres(app_configs, **kwargs):
+@register  # type: ignore
+def check_database_backend_is_postgres() -> list[Warning]:
     from django.conf import settings
 
     errors = []

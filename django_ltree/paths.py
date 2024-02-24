@@ -3,10 +3,11 @@ import math
 from itertools import product
 
 from .fields import PathValue
+from typing import Sequence
 
 
 class PathGenerator(object):
-    def __init__(self, prefix: str = None, skip: list[str] = None):
+    def __init__(self, prefix: str | None = None, skip: list[str] | None = None):
         combinations = string.digits + string.ascii_letters
 
         self.skip_paths = [] if skip is None else skip[:]
@@ -18,15 +19,18 @@ class PathGenerator(object):
             ),
         )
 
-    def __iter__(self):
+    def __iter__(self) -> "PathGenerator":
         return self
 
-    def __next__(self):
+    def __next__(self) -> "PathValue" | None:
         for val in self.product_iterator:
             label = "".join(val)
-            path = PathValue(self.path_prefix + [label])
+            path = PathValue(
+                list(self.path_prefix) if self.path_prefix else [] + [label]
+            )
             if path not in self.skip_paths:
                 return path
+        raise StopIteration
 
     next = __next__
 

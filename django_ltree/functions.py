@@ -7,10 +7,10 @@ __all__ = ("NLevel",)
 
 
 @PathField.register_lookup
-class NLevel(Transform):
+class NLevel(Transform):  # type: ignore
     lookup_name = "depth"
     function = "nlevel"
 
     @property
-    def output_field(self):
+    def output_field(self) -> fields.IntegerField:
         return fields.IntegerField()

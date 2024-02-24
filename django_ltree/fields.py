@@ -55,20 +55,20 @@ class PathValueProxy:
 
         return PathValue(instance.__dict__[self.field_name])
 
-    def __set__(
+    def __set__(  # type: ignore
         self, instance: "PathValueProxy" | None, value: str
-    ) -> NoReturn | "PathValueProxy":
+    ) -> None | "PathValueProxy":
         if instance is None:
             return self
 
         instance.__dict__[self.field_name] = value
 
 
-class PathFormField(forms.CharField):
+class PathFormField(forms.CharField):  # type: ignore
     default_validators = [path_label_validator]
 
 
-class PathField(TextField):
+class PathField(TextField):  # type: ignore
     default_validators = [path_label_validator]
 
     def db_type(self, *args: TypeVarTuple) -> str:
@@ -85,7 +85,9 @@ class PathField(TextField):
         super().contribute_to_class(cls, name)
         setattr(cls, self.name, PathValueProxy(self.name))
 
-    def from_db_value(self, value, expression, connection, *args):
+    def from_db_value(
+        self, value: PathValue | "None", *args: TypeVarTuple
+    ) -> PathValue | "None":
         if value is None:
             return value
         return PathValue(value)
