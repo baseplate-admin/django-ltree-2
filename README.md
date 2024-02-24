@@ -1,5 +1,7 @@
 # django-ltree
 
+[![Downloads](https://static.pepy.tech/badge/django-ltree-2)](https://pepy.tech/project/django-ltree-2)
+
 A tree extension implementation to support hierarchical tree-like data in Django models,
 using the native Postgres extension `ltree`.
 
