@@ -6,11 +6,15 @@
 Welcome to django_ltree's documentation!
 ========================================
 
+Augmenting `django` orm with postgres `ltree <https://www.postgresql.org/docs/current/ltree.html>`_ functionalities
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
+   installation
+   usage
+   manager
 
 Indices and tables
 ==================
