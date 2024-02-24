@@ -44,7 +44,7 @@ class PathValueProxy:
 
     def __get__(
         self, instance: "PathValueProxy | None", *args: TypeVarTuple
-    ) -> "PathValueProxy" | "PathValue" | None:
+    ) -> "PathValueProxy | PathValue | None":
         if instance is None:
             return self
 
