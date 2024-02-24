@@ -87,7 +87,7 @@ class PathField(TextField):  # type: ignore
 
     def from_db_value(
         self, value: PathValue | "None", *args: TypeVarTuple
-    ) -> PathValue | "None":
+    ) -> "PathValue | None":
         if value is None:
             return value
         return PathValue(value)
@@ -97,7 +97,7 @@ class PathField(TextField):  # type: ignore
             return value
         return str(PathValue(value))
 
-    def to_python(self, value: str | None | PathValue) -> PathValue | None:
+    def to_python(self, value: str | None | PathValue) -> "PathValue | None":
         if value is None:
             return value
         elif isinstance(value, PathValue):
