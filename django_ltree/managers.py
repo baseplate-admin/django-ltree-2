@@ -24,7 +24,7 @@ class TreeManager(models.Manager["TreeModel"]):
 
         return self.filter().children(path)
 
-    def create_child(self, parent: "TreeModel" | None = None, **kwargs) -> "TreeModel":
+    def create_child(self, parent: "TreeModel | None" = None, **kwargs) -> "TreeModel":
         """Creates a tree child with or without parent"""
 
         paths_in_use = parent.children() if parent else self.roots()
