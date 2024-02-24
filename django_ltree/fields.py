@@ -57,7 +57,7 @@ class PathValueProxy:
 
     def __set__(  # type: ignore
         self, instance: "PathValueProxy | None", value: str
-    ) -> None | "PathValueProxy":
+    ) -> "None | PathValueProxy":
         if instance is None:
             return self
 
