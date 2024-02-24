@@ -43,7 +43,7 @@ class PathValueProxy:
         self.field_name = field_name
 
     def __get__(
-        self, instance: "PathValueProxy" | None, *args: TypeVarTuple
+        self, instance: "PathValueProxy | None", *args: TypeVarTuple
     ) -> "PathValueProxy" | "PathValue" | None:
         if instance is None:
             return self
@@ -56,7 +56,7 @@ class PathValueProxy:
         return PathValue(instance.__dict__[self.field_name])
 
     def __set__(  # type: ignore
-        self, instance: "PathValueProxy" | None, value: str
+        self, instance: "PathValueProxy | None", value: str
     ) -> None | "PathValueProxy":
         if instance is None:
             return self
