@@ -71,7 +71,7 @@ class PathFormField(forms.CharField):  # type: ignore
 class PathField(TextField):  # type: ignore
     default_validators = [path_label_validator]
 
-    def db_type(self, *args: TypeVarTuple) -> str:
+    def db_type(self, *args: TypeVarTuple, **kwargs: Any) -> str:
         return "ltree"
 
     def formfield(self, **kwargs: Any) -> Any:
