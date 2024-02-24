@@ -34,6 +34,12 @@ psycopg = ">=3.1.18"
 pytest = "^8.0.1"
 pytest-django = "^4.8.0"
 
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^7.2.6"
+furo = "^2024.1.29"
+myst-parser = "^2.0.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
