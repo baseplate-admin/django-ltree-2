@@ -47,6 +47,3 @@ class CustomTree(TreeModel):
 -   Django 5.0 or superior
 -   Python 3.10 or higher
 
-## Roadmaps
-
--   Write documentation on how to use this repository. (If you need a quick way to check things, please check the `tests/test_model.py` file)
