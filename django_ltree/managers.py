@@ -1,27 +1,30 @@
 from django.db import models
-
+from typing import TYPE_CHECKING
 from django_ltree.paths import PathGenerator
 
+from .querysets import TreeQuerySet
 
-class TreeQuerySet(models.QuerySet):
-    def roots(self):
-        return self.filter(path__depth=1)
-
-    def children(self, path):
-        return self.filter(path__descendants=path, path__depth=len(path) + 1)
+if TYPE_CHECKING:
+    from django_ltree.models import TreeModel
 
 
 class TreeManager(models.Manager):
     def get_queryset(self):
+        """Returns a queryset with the models ordered by `path`"""
         return TreeQuerySet(model=self.model, using=self._db).order_by("path")
 
-    def roots(self):
+    def roots(self) -> models.QuerySet["TreeModel"]:
+        """Returns the roots of a given model"""
         return self.filter().roots()
 
-    def children(self, path):
+    def children(self, path: str) -> models.QuerySet["TreeModel"]:
+        """Returns the childrens of a given object"""
         return self.filter().children(path)
 
-    def create_child(self, parent=None, **kwargs):
+    def create_child(
+        self, parent: "TreeModel" = None, **kwargs
+    ) -> models.QuerySet["TreeModel"]:
+        """Creates a tree child with or without parent"""
         paths_in_use = parent.children() if parent else self.roots()
         prefix = parent.path if parent else None
         path_generator = PathGenerator(
