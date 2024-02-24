@@ -22,6 +22,7 @@ Installation
 
    .. code-block:: python
 
+       # settings.py
        INSTALLED_APPS = [
            ...,
            "django_ltree",
@@ -31,5 +32,5 @@ Installation
 3. Run migrations:
 
    .. code-block:: sh
-    
+
         ./manage.py migrate
