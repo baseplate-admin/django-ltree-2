@@ -6,7 +6,7 @@ from .fields import PathValue
 
 
 class PathGenerator(object):
-    def __init__(self, prefix=None, skip=None):
+    def __init__(self, prefix: str = None, skip: list[str] = None):
         combinations = string.digits + string.ascii_letters
 
         self.skip_paths = [] if skip is None else skip[:]
@@ -54,5 +54,3 @@ class PathGenerator(object):
             label_size += 1
 
         return label_size
-
-
