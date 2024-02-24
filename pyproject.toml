@@ -53,6 +53,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.mypy]
 mypy_path = "./django_ltree/"
 namespace_packages = false
+ignore_missing_imports = true
 show_error_codes = true
 strict = true
 warn_unreachable = true

@@ -5,7 +5,7 @@ class DjangoLtreeConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "django_ltree"
 
-    def ready(self):
+    def ready(self) -> None:
         from . import checks as checks
         from . import lookups as lookups
         from . import functions as functions
