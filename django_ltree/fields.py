@@ -86,7 +86,7 @@ class PathField(TextField):  # type: ignore
         setattr(cls, self.name, PathValueProxy(self.name))
 
     def from_db_value(
-        self, value: PathValue | "None", *args: TypeVarTuple
+        self, value: "PathValue | None", *args: TypeVarTuple
     ) -> "PathValue | None":
         if value is None:
             return value
