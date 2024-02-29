@@ -31,5 +31,5 @@ class TreeManager(models.Manager):
             prefix,
             skip=paths_in_use.values_list("path", flat=True),
         )
-        kwargs["path"] = path_generator.next()
+        kwargs["path"] = next(path_generator)
         return self.create(**kwargs)
