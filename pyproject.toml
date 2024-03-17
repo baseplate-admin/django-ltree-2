@@ -27,7 +27,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.10"
-django = ">=5.0.2"
+django = ">=4.2"
 psycopg = ">=3.1.18"
 
 [tool.poetry.group.test.dependencies]
