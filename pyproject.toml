@@ -38,7 +38,7 @@ pytest-django = "^4.8.0"
 [tool.poetry.group.docs.dependencies]
 sphinx = "^7.2.6"
 furo = "^2024.1.29"
-myst-parser = "^2.0.0"
+myst-parser = ">=2,<4"
 sphinx-reload = "^0.2.0"
 
 [build-system]
