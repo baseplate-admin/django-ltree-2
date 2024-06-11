@@ -44,6 +44,6 @@ class CustomTree(TreeModel):
 
 ## Requires
 
--   Django 5.0 or superior
+-   Django 4.2 or superior
 -   Python 3.10 or higher
 
