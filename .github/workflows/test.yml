@@ -51,7 +51,7 @@ jobs:
 
             - name: Run tests
               run: |
-                  poetry run pytest -v -x tests/
+                  pytest -v -x tests/
 
             # - name: Upload pytest test results
             #   uses: actions/upload-artifact@v2
