@@ -50,7 +50,7 @@ jobs:
                   virtualenvs-in-project: true
             - name: Install python dependencies
               run: |
-                  poetry install --sync --no-interaction --no-root --with test
+                  poetry run pip install django psycopg pytest pytest-django
                   poetry run pip install -e .
 
             - name: Run tests
