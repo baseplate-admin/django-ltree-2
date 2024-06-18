@@ -20,7 +20,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -34,7 +33,7 @@ classifiers = [
 
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.9"
 django = ">=3.2"
 psycopg = ">=3"
 
@@ -45,7 +44,7 @@ pytest-django = "^4.8.0"
 
 [tool.poetry.group.docs.dependencies]
 sphinx = "^7.2.6"
-myst-parser = ">=2,<4"
+myst-parser = ">=2"
 sphinx-reload = "^0.2.0"
 shibuya = "^2024.6.1"
 
