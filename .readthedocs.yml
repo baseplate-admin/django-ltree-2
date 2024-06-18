@@ -16,6 +16,8 @@ build:
             # Install poetry
             # https://python-poetry.org/docs/#installing-manually
             - pip install poetry
+            # Tell poetry to update itself
+            - poetry lock
             # Tell poetry to not use a virtual environment
             - poetry config virtualenvs.create false
         post_install:
