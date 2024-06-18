@@ -1,6 +1,6 @@
 # Manager
 
-```eval-rst
+```{eval-rst}
 
 .. currentmodule:: django_ltree.managers
 
