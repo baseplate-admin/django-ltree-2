@@ -19,7 +19,7 @@ This fork contains is a continuation of the work done by [`mariocesar`](https://
 ## Install
 
 ```py
-pip install django-ltree
+pip install django-ltree-2
 ```
 
 Then add `django_ltree` to `INSTALLED_APPS` in your Django project settings.
