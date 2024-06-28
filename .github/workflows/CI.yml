@@ -71,9 +71,6 @@ jobs:
                   poetry install --sync --no-interaction --no-root --with test
                   poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
 
-            # - name: Test
-            #   run: |
-            #       poetry run pytest .
             - name: Publish
               run: |
                   poetry publish --build
