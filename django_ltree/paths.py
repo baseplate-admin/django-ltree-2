@@ -28,7 +28,6 @@ class PathGenerator(object):
             if path not in self.skip_paths:
                 return path
 
-
     @staticmethod
     def guess_the_label_size(path_size: int, combination_size: int) -> int:
         # The theoritical limit for this at the time of writing is 2_538_557_185_841_324_496 (python 3.12.2)
@@ -53,5 +52,3 @@ class PathGenerator(object):
             label_size += 1
 
         return label_size
-
-
