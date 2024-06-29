@@ -9,7 +9,15 @@ jobs:
         strategy:
             matrix:
                 python-version:
-                    ['3.9', '3.10', '3.11', '3.12', 'pypy-3.9', 'pypy-3.10']
+                    [
+                        '3.9',
+                        '3.10',
+                        '3.11',
+                        '3.12',
+                        '3.13.0-beta.2',
+                        'pypy-3.9',
+                        'pypy-3.10',
+                    ]
         continue-on-error: true
         services:
             database:
