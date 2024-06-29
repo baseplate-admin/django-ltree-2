@@ -2,7 +2,7 @@
 
 
     
-[![Downloads](https://static.pepy.tech/badge/django-ltree-2)](https://pepy.tech/project/django-ltree-2) [![Documentation Status](https://readthedocs.org/projects/django-ltree-2/badge/?version=latest)](https://django-ltree-2.readthedocs.io/en/latest/?badge=latest)  [![Test](https://github.com/baseplate-admin/django-ltree-2/actions/workflows/test.yml/badge.svg)](https://github.com/baseplate-admin/django-ltree-2/actions/workflows/test.yml) [![Pypi Badge](https://img.shields.io/pypi/v/django-ltree-2.svg)](https://pypi.org/project/django-ltree-2/)
+[![Downloads](https://static.pepy.tech/badge/django-ltree-2)](https://pepy.tech/project/django-ltree-2) [![Documentation Status](https://readthedocs.org/projects/django-ltree-2/badge/?version=latest)](https://django-ltree-2.readthedocs.io/en/latest/?badge=latest)  [![CI](https://github.com/baseplate-admin/django-ltree-2/actions/workflows/CI.yml/badge.svg)](https://github.com/baseplate-admin/django-ltree-2/actions/workflows/test.yml) [![Pypi Badge](https://img.shields.io/pypi/v/django-ltree-2.svg)](https://pypi.org/project/django-ltree-2/)
 
 
 
