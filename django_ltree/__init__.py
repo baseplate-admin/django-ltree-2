@@ -1,1 +1,1 @@
-default_app_config = 'django_ltree.apps.DjangoLtreeConfig'
+default_app_config = "django_ltree.apps.DjangoLtreeConfig"
