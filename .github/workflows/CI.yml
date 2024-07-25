@@ -71,7 +71,7 @@ jobs:
     merge:
         runs-on: ubuntu-latest
         needs: [test]
-        if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}} # Detect that the PR author is dependabot
+        if: ${{ github.actor == 'dependabot[bot]' }} # Detect that the PR author is dependabot
         steps:
           - name: Enable auto-merge for Dependabot PRs
             run: gh pr merge --auto --merge "$PR_URL" # Use Github CLI to merge automatically the PR
