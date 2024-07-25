@@ -69,7 +69,7 @@ jobs:
 
 
     merge:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu:latest
         needs: [test]
         if: github.actor == 'dependabot[bot]' # Detect that the PR author is dependabot
         steps:
