@@ -73,6 +73,7 @@ jobs:
         needs: [test]
         if: github.actor == 'dependabot[bot]' # Detect that the PR author is dependabot
         steps:
+          - uses: actions/checkout@v4
           - name: Enable auto-merge for Dependabot PRs
             run: gh pr merge --auto --merge "$PR_URL" # Use Github CLI to merge automatically the PR
             env:
