@@ -9,7 +9,7 @@ permissions:
 jobs:
     test:
         runs-on: ubuntu-latest
-        name: Python ${{ matrix.python-version }} sample
+        name: Python ${{ matrix.python-version }} sample with Postgres ${{ matrix.postgres-version }}
         strategy:
             matrix:
                 python-version:
@@ -22,10 +22,18 @@ jobs:
                         'pypy-3.9',
                         'pypy-3.10',
                     ]
+                postgres-version:
+                    [
+                        '13',
+                        '14',
+                        '15',
+                        '16',
+                        '17',
+                    ]
         continue-on-error: true
         services:
             database:
-                image: postgres:17
+                image: postgres:${{ matrix.postgres-version }}
                 env:
                     POSTGRES_USER: postgres
                     POSTGRES_PASSWORD: postgres
