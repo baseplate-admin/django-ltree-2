@@ -5,7 +5,7 @@ from itertools import product
 from .fields import PathValue
 
 
-class PathGenerator(object):
+class PathGenerator:
     def __init__(self, prefix=None, skip=None):
         combinations = string.digits + string.ascii_letters
 
