@@ -4,7 +4,7 @@ from .fields import PathField
 
 
 class SimpleLookup(Lookup):
-    lookup_operator = "="  # type: str
+    lookup_operator = "="
 
     def as_sql(self, compiler, connection):
         lhs, lhs_params = self.process_lhs(compiler, connection)
