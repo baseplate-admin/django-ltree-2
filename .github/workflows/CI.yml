@@ -94,6 +94,13 @@ jobs:
         runs-on: ubuntu-latest
         if: "startsWith(github.ref, 'refs/tags/')"
         needs: [test]
+        
+        environment:
+          name: pypi
+          url: https://pypi.org/project/django-ltree-2
+          
+        permissions:
+          id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
         steps:
             - uses: actions/checkout@v4
             - name: Install Poetry
@@ -124,6 +131,6 @@ jobs:
                   upload_url: ${{ github.event.release.upload_url }}
                   asset_path: ./dist/*.whl
                   
-            - name: Publish
-              run: |
-                  poetry publish
+            - name: Publish package distributions to PyPI
+              uses: pypa/gh-action-pypi-publish@release/v1
+ 
