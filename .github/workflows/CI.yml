@@ -111,7 +111,19 @@ jobs:
             - name: Install python dependencies
               run: |
                   poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
-
+                    # Upload the .whl file to the GitHub Release
+            
+            - name: Build the dependency
+              run: poetry run build
+              
+            - name: Upload to GitHub Release
+              uses: actions/upload-release-asset@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  upload_url: ${{ github.event.release.upload_url }}
+                  asset_path: ./dist/*.whl
+                  
             - name: Publish
               run: |
-                  poetry publish --build
+                  poetry publish
