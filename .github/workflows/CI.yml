@@ -64,13 +64,7 @@ jobs:
               run: |
                   poetry run pytest -v -x tests/
                   
-            - name: Upload entire workspace
-              uses: actions/upload-artifact@v4
-              with:
-                  name: workspace
-                  path: .
-                  retention-days: 1
-                  
+
             # - name: Upload pytest test results
             #   uses: actions/upload-artifact@v2
             #   with:
@@ -108,13 +102,6 @@ jobs:
               with:
                   virtualenvs-create: true
                   virtualenvs-in-project: true
-            # Download the entire workspace
-            - name: Download workspace
-              uses: actions/download-artifact@v4
-              with:
-                  name: workspace
-                  path: .
-                  retention-days: 1
 
             - name: Install python dependencies
               run: |
