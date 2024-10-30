@@ -108,7 +108,7 @@ jobs:
                   poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
             
             - name: Build the dependency
-              run: poetry run build
+              run: poetry build
               
             - name: Upload to GitHub Release
               uses: actions/upload-release-asset@v1
