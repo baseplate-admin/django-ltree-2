@@ -18,7 +18,9 @@ This fork contains is a continuation of the work done by [`mariocesar`](https://
 
 ## Install
 
-```py
+# Please remember to uninstall `django-ltree` before installing `django-ltree-2`, since both uses `django_ltree` namespace.
+
+```python
 pip install django-ltree-2
 ```
 
