@@ -3,9 +3,9 @@ name = "django-ltree-2"
 version = "0.1.10"
 description = "Continual of django-ltree"
 authors = [
+    "baseplate-admin <61817579+baseplate-admin@users.noreply.github.com>",
     "Mario César Señoranis Ayala <mariocesar@humanzilla.com>",
     "Kimsia Sim",
-    "baseplate-admin <61817579+baseplate-admin@users.noreply.github.com>"
 ]
 license = "MIT"
 readme = "README.md"
