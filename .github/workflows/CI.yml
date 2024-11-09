@@ -106,13 +106,15 @@ jobs:
             - name: Build the dependency
               run: poetry build
               
-            - name: Upload to GitHub Release
-              uses: actions/upload-release-asset@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Upload package to release
+              uses: svenstaro/upload-release-action@v2
               with:
-                  upload_url: ${{ github.event.release.upload_url }}
-                  asset_path: ./dist/*.whl
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dist/*.whl
+                  tag: ${{ github.ref }}
+                  overwrite: true
+                  file_glob: true
+
                   
             - name: Publish package distributions to PyPI
               uses: pypa/gh-action-pypi-publish@release/v1
