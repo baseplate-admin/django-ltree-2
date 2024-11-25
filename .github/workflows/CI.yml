@@ -78,7 +78,7 @@ jobs:
         # Only run if the PR author is Dependabot or pre-commit-ci
         if: >
             github.actor == 'dependabot[bot]' || 
-            github.actor == 'pre-commit-ci[bot]' 
+            github.actor == 'pre-commit-ci' 
             
         steps:
             - uses: actions/checkout@v4
