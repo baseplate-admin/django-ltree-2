@@ -75,7 +75,7 @@ jobs:
     merge:
         runs-on: ubuntu-latest
         needs: [test]
-        if: github.actor == 'dependabot[bot]' # Detect that the PR author is dependabot
+        if: github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci[bot]' # Detect that the PR author is dependabot or pre-commit-ci
         steps:
             - uses: actions/checkout@v4
             - name: Enable auto-merge for Dependabot PRs
