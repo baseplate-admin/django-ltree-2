@@ -76,9 +76,9 @@ jobs:
         runs-on: ubuntu-latest
         needs: [test]
         # Only run if the PR author is Dependabot or pre-commit-ci
-        if: >
+        if: |
             github.actor == 'dependabot[bot]' || 
-            github.actor == 'pre-commit-ci' 
+            github.actor == 'pre-commit-ci[bot]'
             
         steps:
             - uses: actions/checkout@v4
