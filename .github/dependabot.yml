@@ -8,14 +8,13 @@ updates:
   - package-ecosystem: "pip" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "monthly"
-      day: 'friday'
+      interval: "daily"
+      
 
     open-pull-requests-limit: 100
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "monthly"
-      day: 'friday'
-
+      interval: "daily"
+      
     open-pull-requests-limit: 100
