@@ -6,10 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "django_ltree"
+project = "django_ltree_2"
 copyright = "2024, baseplate-admin"
 author = "baseplate-admin"
-release = "0.1.8"
+release = "0.1.10"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
