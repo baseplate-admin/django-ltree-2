@@ -1,10 +1,9 @@
 # django-ltree-2
 
----
     
 [![Downloads](https://static.pepy.tech/badge/django-ltree-2)](https://pepy.tech/project/django-ltree-2) [![Documentation Status](https://readthedocs.org/projects/django-ltree-2/badge/?version=latest)](https://django-ltree-2.readthedocs.io/en/latest/?badge=latest)  [![CI](https://github.com/baseplate-admin/django-ltree-2/actions/workflows/CI.yml/badge.svg)](https://github.com/baseplate-admin/django-ltree-2/actions/workflows/test.yml) [![Pypi Badge](https://img.shields.io/pypi/v/django-ltree-2.svg)](https://pypi.org/project/django-ltree-2/) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/baseplate-admin/django-ltree-2/master.svg)](https://results.pre-commit.ci/latest/github/baseplate-admin/django-ltree-2/master)
 
----
+
 
 A tree extension implementation to support hierarchical tree-like data in Django models,
 using the native Postgres extension `ltree`.
