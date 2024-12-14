@@ -14,6 +14,7 @@ Augmenting `django` orm with postgres `ltree <https://www.postgresql.org/docs/cu
 
    installation
    usage
+   indexes
    manager
 
 Indices and tables

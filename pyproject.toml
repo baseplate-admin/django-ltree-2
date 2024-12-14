@@ -7,14 +7,15 @@ authors = [
     "Mario César Señoranis Ayala <mariocesar@humanzilla.com>",
     "Kimsia Sim",
 ]
+maintainers = [
+    "baseplate-admin <61817579+baseplate-admin@users.noreply.github.com>",
+]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "django_ltree"}]
-classifiers = [ 
+packages = [{ include = "django_ltree", from = "src" }]
+classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Framework :: Django",
-    "Framework :: Django :: 3.2",
-    "Framework :: Django :: 4.1",
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Django :: 5.1",

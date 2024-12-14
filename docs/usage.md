@@ -2,8 +2,9 @@
 
 Lets assume that our model looks like this.
 
-```python
-# models.py
+```{code-block} python
+:caption: models.py
+
 from django import models
 from django_ltree import TreeModel
 
@@ -13,7 +14,9 @@ class CustomTree(TreeModel):
 
 ## Create a child without parent
 
-```python
+```{code-block} python
+:caption: views.py
+
 from .models import CustomTree
 
 CustomTree.objects.create_child(text='Hello world')
@@ -26,7 +29,9 @@ tree)
 
 Let's assume we want to add a child to the CustomTree object of `pk=1`
 
-```python
+```{code-block} python
+:caption: views.py
+
 from .models import CustomTree
 
 # This must return a single object
@@ -38,7 +43,9 @@ CustomTree.objects.create_child(text='Hello world', parent=parent)
 
 A root means the the object that childrens anchor to.
 
-```python
+```{code-block} python
+:caption: views.py
+
 from .models import CustomTree
 
 roots: list[CustomTree] = CustomTree.objects.roots()
@@ -49,7 +56,9 @@ roots: list[CustomTree] = CustomTree.objects.roots()
 To get the childrens of a object, we can first get the object then call
 the QuerySet specific children function.
 
-```python
+```{code-block} python
+:caption: views.py
+
 from .models import CustomTree
 
 instance = CustomTree.objects.get(pk=1)
@@ -65,7 +74,9 @@ the filter method.
 Lets assume we want to get the childrens of `CustomTree`
 object whose pk is 1.
 
-```python
+```{code-block} python
+:caption: views.py
+
 from .models import CustomTree
 
 instance = CustomTree.objects.get(pk=1)
