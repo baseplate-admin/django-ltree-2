@@ -50,7 +50,7 @@ pytest-django = "^4.8.0"
 sphinx = "^7.2.6"
 myst-parser = ">=2"
 sphinx-reload = "^0.2.0"
-shibuya = "^2024.6.1"
+shibuya = ">=2024.6.1,<2026.0.0"
 
 [build-system]
 requires = ["poetry-core"]
