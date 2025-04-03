@@ -26,7 +26,7 @@ class TreeManager(models.Manager):
     ) -> TreeQuerySet["TreeModel"]:
         """Creates a tree child with or without parent"""
         prefix = parent.path if parent else None
-        
+
         """If a label is not provided, we generate a new one, else we use it as suffix"""
         if label is None:
             paths_in_use = parent.children() if parent else self.roots()
@@ -40,6 +40,6 @@ class TreeManager(models.Manager):
                 path = label
             else:
                 path = str(prefix) + "." + label
-        
+
         kwargs["path"] = path
         return self.create(**kwargs)
