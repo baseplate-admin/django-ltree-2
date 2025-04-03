@@ -5,7 +5,7 @@
 -   Python 3.9 to 3.13 supported.
 -   PyPy 3.9 to 3.10 supported.
 -   Django 4.2 to 5.1 supported.
--   Postgres 13 to 17 supported.
+-   Postgres 14 to 17 supported.
 
 ## Installation
 
