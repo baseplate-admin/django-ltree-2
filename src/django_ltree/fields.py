@@ -33,6 +33,9 @@ class PathValue(UserList):
     def __str__(self):
         return ".".join(self)
 
+    def __hash__(self):
+        return hash(tuple(self))
+
 
 class PathValueProxy:
     def __init__(self, field_name):
