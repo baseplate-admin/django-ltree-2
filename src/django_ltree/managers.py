@@ -22,7 +22,7 @@ class TreeManager(models.Manager):
         return self.filter().children(path)
 
     def create_child(
-        self, parent: "TreeModel" = None,  label: str = None, **kwargs
+        self, parent: "TreeModel" = None, label: str = None, **kwargs
     ) -> TreeQuerySet["TreeModel"]:
         """Creates a tree child with or without parent"""
         prefix = parent.path if parent else None
