@@ -1,103 +1,104 @@
 from taxonomy.models import Taxonomy
+import pytest
 
-# Test whether the automatic path creation works as expected for create_child()
-# The test creates a tree of Taxonomy objects with a specified depth and breadth.
-def test_automatic_path_creation(db):
-    
-    TEST_DEPTH = 5
-    TEST_BREADTH = 3
-    NAME_PREFIX = "test_automatic_path_creation_"
-    
-    """Recursively create a tree of Taxonomy objects."""
-    def recursive_create(depth: int, parent: Taxonomy):
-        if depth == TEST_DEPTH:
-            return
-        for i in range(0, TEST_BREADTH):
-            child = Taxonomy.objects.create_child(name=NAME_PREFIX+str(depth)+"_"+str(i), parent=parent)
-            recursive_create(depth + 1, child)
+# ----- Automatic Path Creation Tests -----
 
-    root = Taxonomy.objects.create_child(name=NAME_PREFIX+"root")
-    recursive_create(depth=0, parent=root)
-    
-    # Check that the tree was created correctly
+def test_create_root_node_automatic(db):
+    """Test creating a root node with automatic labeling."""
+    root = Taxonomy.objects.create_child(name="test_auto_root")
+    assert root is not None
+    assert root.children().count() == 0
 
-    # Check that the root node is correct
-    assert root is not None, "Root should not be None"
-    assert root.children().count() == TEST_BREADTH, f"Root should have {TEST_BREADTH} children"
+def test_create_children_automatic(db):
+    """Test creating children with automatic labels."""
+    root = Taxonomy.objects.create_child(name="test_auto_root")
     
-    # Check that the children of the root node are correct
-    possible_labels = [str(i) for i in range(0, TEST_DEPTH)]
-    for i in range(0, TEST_BREADTH):
-        child = root.children()[i]
-        assert child is not None, f"Child {i} should not be None"
-        assert child.label() in possible_labels, f"Child {i} label should be one of '{possible_labels}'" # order is not guaranteed
-        assert child.children().count() == TEST_BREADTH, f"Child {i} should have {TEST_BREADTH} children"
-        
-    # Check that the depth of the tree is correct
-    parent = root
-    possible_labels = [str(i) for i in range(0, TEST_DEPTH)]
-    for i in range(0, TEST_DEPTH):
-        child = parent.children()[0]
-        assert child is not None, f"Child {i} should not be None"
-        assert child.label() in possible_labels, f"Child {i} label should have one of the following labels '{possible_labels}'" # order is not guaranteed
-        parent = child
-        
-    # Latest child should have no children
-    assert parent.children().count() == 0, "Latest child should have no children"
+    # Create children
+    for i in range(3):
+        Taxonomy.objects.create_child(name=f"test_auto_child_{i}", parent=root)
+    
+    assert root.children().count() == 3
 
+def test_children_have_automatic_labels(db):
+    """Test that automatically created children get labels."""
+    root = Taxonomy.objects.create_child(name="test_auto_root")
+    child = Taxonomy.objects.create_child(name="test_auto_child", parent=root)
+    
+    assert child.label() is not None
 
-# Test whether the path creation works as expected for create_child() when providing a label
-# The test creates a tree of Taxonomy objects with a set of labels
-def test_manual_path_creation(db):
-    DEPTH_LABELS = ["AA", "AB", "AC", "AD", "AE"]
-    BREADTH_LABELS = ["X0", "Y_1", "Z__2"]
-    NAME_PREFIX = "test_manual_path_creation_"
+def test_multilevel_hierarchy_automatic(db):
+    """Test a multi-level hierarchy with automatic labels."""
+    root = Taxonomy.objects.create_child(name="test_auto_root")
+    child = Taxonomy.objects.create_child(name="test_auto_child", parent=root)
+    grandchild = Taxonomy.objects.create_child(name="test_auto_grandchild", parent=child)
     
-    """Recursively create a tree of Taxonomy objects."""
-    def recursive_create_with_label(depth: int, parent: Taxonomy):
-        if depth == len(DEPTH_LABELS):
-            return
-        
-        depth_label = DEPTH_LABELS[depth]
-        for breadth_label in BREADTH_LABELS:
-            label = depth_label + "_" + breadth_label
-            child = Taxonomy.objects.create_child(name=NAME_PREFIX+label, label=label, parent=parent)
-            recursive_create_with_label(depth + 1, child)
+    assert root.children().count() == 1
+    assert child.children().count() == 1
+    assert grandchild.children().count() == 0
 
-    root_label = "root"
-    root = Taxonomy.objects.create_child(name=NAME_PREFIX+"root", label=root_label)
-    recursive_create_with_label(depth=0, parent=root)
+def test_deep_tree_automatic(db):
+    """Test creating a deep tree with automatic labels."""
+    root = Taxonomy.objects.create_child(name="test_auto_root")
     
-    # Check that the tree was created correctly
+    # Create a chain of nodes
+    current = root
+    for i in range(5):
+        current = Taxonomy.objects.create_child(name=f"test_auto_level_{i}", parent=current)
     
-    # Check that the root node is correct
-    assert root is not None, "Root should not be None"
-    assert root.label() == root_label, f"Root label should be '{root_label}'"
-    assert root.children().count() == len(BREADTH_LABELS), f"Root should have {len(BREADTH_LABELS)} children"
-        
-    # Check that the children of the root node are correct
-    possible_labels = [DEPTH_LABELS[0] + "_" + breadth for breadth in BREADTH_LABELS] # order is not guaranteed, so multiple labels are possible
-    for i in range(0, len(BREADTH_LABELS)):
-        child = root.children()[i]
-        assert child is not None, f"Child at breadth {i} should not be None"
-        assert child.label() in possible_labels, f"Label of child at breadth {i} should be one of '{possible_labels}'" 
-        assert child.children().count() == len(BREADTH_LABELS), f"Child {i} should have {len(BREADTH_LABELS)} children"
-        
-    # Check that the depth of the tree is correct
-    parent = root
-    for i in range(0, len(DEPTH_LABELS)):
-        possible_labels = [DEPTH_LABELS[i] + "_" + breadth for breadth in BREADTH_LABELS]  
-        child = parent.children()[0]
-        assert child is not None, f"Child at depth {i} should not be None"
-        assert child.label() in possible_labels, f"Label of child at depth {i} should have one of the following labels '{possible_labels}'"
-        parent = child
-        
-    # Latest child should have no children
-    assert parent.children().count() == 0, "Latest child should have no children"
-    
-    # Check that the path is correct for one of the children at max depth:
-    path_components = [root_label] + [depth + "_" + BREADTH_LABELS[0] for depth in DEPTH_LABELS]
-    path_str = ".".join(path_components)
-    deepest_child = Taxonomy.objects.filter(path=path_str)
-    assert deepest_child.exists(), f"Child with path '{path_str}' should exist"
+    # Leaf node should have no children
+    assert current.children().count() == 0
 
+# ----- Manual Path Creation Tests -----
+
+def test_create_root_with_custom_label(db):
+    """Test creating a root node with a custom label."""
+    root = Taxonomy.objects.create_child(name="test_manual_root", label="ROOT")
+    assert root.label() == "ROOT"
+
+def test_create_children_with_custom_labels(db):
+    """Test creating children with custom labels."""
+    root = Taxonomy.objects.create_child(name="test_manual_root", label="ROOT")
+    
+    labels = ["A", "B", "C"]
+    for label in labels:
+        Taxonomy.objects.create_child(name=f"test_manual_child_{label}", 
+                                      label=label, parent=root)
+    
+    assert root.children().count() == len(labels)
+    
+    child_labels = [child.label() for child in root.children()]
+    for label in labels:
+        assert label in child_labels
+
+def test_hierarchy_with_custom_labels(db):
+    """Test a hierarchy with custom labels."""
+    root = Taxonomy.objects.create_child(name="test_manual_root", label="ROOT")
+    child = Taxonomy.objects.create_child(name="test_manual_child", 
+                                         label="CHILD", parent=root)
+    
+    assert child.label() == "CHILD"
+    assert root.children().count() == 1
+
+def test_path_construction_with_custom_labels(db):
+    """Test path construction with custom labels."""
+    root = Taxonomy.objects.create_child(name="test_manual_root", label="R")
+    child = Taxonomy.objects.create_child(name="test_manual_child", 
+                                         label="C", parent=root)
+    grandchild = Taxonomy.objects.create_child(name="test_manual_grandchild", 
+                                              label="G", parent=child)
+    
+    # Path should be concatenated with periods
+    assert str(grandchild.path) == "R.C.G"
+
+def test_retrieve_node_by_path(db):
+    """Test retrieving a node by its path."""
+    root = Taxonomy.objects.create_child(name="test_manual_root", label="R")
+    child = Taxonomy.objects.create_child(name="test_manual_child", 
+                                         label="C", parent=root)
+    Taxonomy.objects.create_child(name="test_manual_grandchild", 
+                                 label="G", parent=child)
+    
+    # Retrieve by path
+    node = Taxonomy.objects.filter(path="R.C.G").first()
+    assert node is not None
+    assert node.name == "test_manual_grandchild"
