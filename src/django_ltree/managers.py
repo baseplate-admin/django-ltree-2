@@ -22,14 +22,24 @@ class TreeManager(models.Manager):
         return self.filter().children(path)
 
     def create_child(
-        self, parent: "TreeModel" = None, **kwargs
+        self, parent: "TreeModel" = None, label: str = None, **kwargs
     ) -> TreeQuerySet["TreeModel"]:
         """Creates a tree child with or without parent"""
-        paths_in_use = parent.children() if parent else self.roots()
         prefix = parent.path if parent else None
-        path_generator = PathGenerator(
-            prefix,
-            skip=paths_in_use.values_list("path", flat=True),
-        )
-        kwargs["path"] = next(path_generator)
+
+        """If a label is not provided, we generate a new one, else we use it as suffix"""
+        if label is None:
+            paths_in_use = parent.children() if parent else self.roots()
+            path_generator = PathGenerator(
+                prefix,
+                skip=paths_in_use.values_list("path", flat=True),
+            )
+            path = next(path_generator)
+        else:
+            if prefix is None:
+                path = label
+            else:
+                path = str(prefix) + "." + label
+
+        kwargs["path"] = path
         return self.create(**kwargs)
