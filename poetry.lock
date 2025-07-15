@@ -659,14 +659,14 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "shibuya"
-version = "2025.5.30"
+version = "2025.7.14"
 description = "A clean, responsive, and customizable Sphinx documentation theme with light/dark mode."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["docs"]
 files = [
-    {file = "shibuya-2025.5.30-py3-none-any.whl", hash = "sha256:9b57bb87196a5fb358aa75c6c1a1119e6a76fde2e3c961f88db5647b042075d4"},
-    {file = "shibuya-2025.5.30.tar.gz", hash = "sha256:6ee0ca3af30d61ba240abe212b0ded21dc7542cf050c11ace7a28df9251171ae"},
+    {file = "shibuya-2025.7.14-py3-none-any.whl", hash = "sha256:8103f4cf4149de39b745b3a4adda072beba06aeb4445ff44df401a2c6b7da5b7"},
+    {file = "shibuya-2025.7.14.tar.gz", hash = "sha256:1a6309cb5f4d41af912d50d22429b473e33042cb089bf956ab9e1f97eec37acc"},
 ]
 
 [package.dependencies]
