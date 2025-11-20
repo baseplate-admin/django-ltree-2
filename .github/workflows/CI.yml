@@ -44,12 +44,12 @@ jobs:
             DJANGO_DATABASE_NAME: postgres
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - name: Set up Python
               uses: actions/setup-python@v6
               with:
                   python-version: ${{ matrix.python-version }}
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - name: Install Poetry
               uses: snok/install-poetry@v1
               with:
@@ -78,7 +78,7 @@ jobs:
         if: github.actor == 'dependabot[bot]'
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - name: Enable auto-merge for Dependabot PRs
               run: gh pr merge --auto --merge "$PR_URL" # Use Github CLI to merge automatically the PR
               env:
@@ -98,7 +98,7 @@ jobs:
             contents: write
             id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - name: Install Poetry
               uses: snok/install-poetry@v1
               with:
