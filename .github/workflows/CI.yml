@@ -92,15 +92,14 @@ jobs:
             id-token: write
         steps:
             - uses: actions/checkout@v6
-            - name: Install Hatch
-              run: pip install hatch
-            - uses: actions/download-artifact@v7
-              with:
-                  name: workspace
-                  path: .
+            
+            - name: Install uv
+              uses: astral-sh/setup-uv@v7
+
             - name: Build package
               run: |
-                  hatch build
+                  uv run hatch build
+                  
             - name: Upload release assets
               uses: svenstaro/upload-release-action@v2
               with:

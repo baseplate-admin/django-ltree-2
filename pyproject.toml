@@ -1,6 +1,6 @@
 [project]
 name = "django-ltree-2"
-version = "0.1.12"
+version = "0.1.13"
 description = "Continual of django-ltree with additional goodies"
 authors = [
     { name = "baseplate-admin", email = "61817579+baseplate-admin@users.noreply.github.com" },
@@ -19,6 +19,8 @@ classifiers = [
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: Implementation :: PyPy",
@@ -29,6 +31,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Programming Language :: Python :: 3",
 ]
 dependencies = ["django>=3.2", "psycopg>=3"]
