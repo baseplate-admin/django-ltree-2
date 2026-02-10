@@ -7,27 +7,27 @@ version: 2
 
 # Set the OS, Python version and other tools you might need
 build:
-    os: ubuntu-22.04
+    os: ubuntu-lts-latest
     tools:
-        python: '3.12'
+        python: 'latest'
+        rust: 'latest'
         # You can also specify other tool versions:
     jobs:
-        post_create_environment:
-            # Install poetry
-            # https://python-poetry.org/docs/#installing-manually
-            - pip install poetry
-            # Tell poetry to update itself
-            - poetry lock
-            # Tell poetry to not use a virtual environment
-            - poetry config virtualenvs.create false
         post_install:
-            # Install dependencies with 'docs' dependency group
-            # https://python-poetry.org/docs/managing-dependencies/#dependency-groups
-            - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --with docs
+            # Install with docs extras
+            - python -m pip install uv
+            - UV_PROJECT_ENVIRONMENT=$READTHEDOCS_VIRTUALENV_PATH uv sync --group docs
+
+
+python:
+    install:
+        - method: pip
+          path: .
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
     configuration: docs/conf.py
+    
 # Optionally build your docs in additional formats such as PDF and ePub
 # formats:
 #    - pdf
