@@ -10,7 +10,9 @@ authors = [
 requires-python = ">=3.9"
 readme = "README.md"
 license = "MIT"
-maintainers = [{ name = "baseplate-admin", email = "61817579+baseplate-admin@users.noreply.github.com" }]
+maintainers = [
+    { name = "baseplate-admin", email = "61817579+baseplate-admin@users.noreply.github.com" },
+]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Framework :: Django",
@@ -29,10 +31,7 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3",
 ]
-dependencies = [
-    "django>=3.2",
-    "psycopg>=3",
-]
+dependencies = ["django>=3.2", "psycopg>=3"]
 
 [project.urls]
 "Bug Tracker" = "https://github.com/baseplate-admin/django-ltree-2/issues"
@@ -40,22 +39,17 @@ homepage = "https://github.com/baseplate-admin/django-ltree-2"
 repository = "https://github.com/baseplate-admin/django-ltree-2"
 
 [dependency-groups]
-test = [
-    "pytest>=8.0.1,<9",
-    "pytest-django>=4.8.0,<5",
-]
+test = ["pytest>=8.0.1,<9", "pytest-django>=4.8.0,<5"]
 docs = [
     "sphinx>=7.2.6,<8",
     "myst-parser>=2",
     "sphinx-reload>=0.2.0,<0.3",
     "shibuya>=2024.6.1,<2026.0.0",
 ]
+build = ["hatch"]
 
 [tool.uv]
-default-groups = [
-    "test",
-    "docs",
-]
+default-groups = ["test", "docs", "build"]
 
 [tool.hatch.build.targets.sdist]
 include = ["src/django_ltree"]

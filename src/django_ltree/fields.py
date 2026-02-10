@@ -105,3 +105,12 @@ class PathField(TextField):
             return str(PathValue(value))
 
         raise ValueError(f"Unknown value type {type(value)}")
+
+
+class LqueryField(TextField):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.editable = False
+
+    def db_type(self, connection):
+        return "lquery"
