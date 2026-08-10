@@ -1,10 +1,10 @@
 from collections import UserList
+from collections.abc import Iterable
+
 from django import forms
 from django.core.validators import RegexValidator
 from django.db.models.fields import TextField
 from django.forms.widgets import TextInput
-
-from collections.abc import Iterable
 
 path_label_validator = RegexValidator(
     r"^(?P<root>[a-zA-Z0-9_-]+)(?:\.[a-zA-Z0-9_-]+)*$",
@@ -23,7 +23,7 @@ class PathValue(UserList):
         elif isinstance(value, Iterable):
             value = [str(v) for v in value]
         else:
-            raise ValueError("Invalid value: {!r} for path".format(value))
+            raise ValueError(f"Invalid value: {value!r} for path")
 
         super().__init__(initlist=value)
 
@@ -89,9 +89,7 @@ class PathField(TextField):
         return str(PathValue(value))
 
     def to_python(self, value):
-        if value is None:
-            return value
-        elif isinstance(value, PathValue):
+        if value is None or isinstance(value, PathValue):
             return value
 
         return PathValue(value)

@@ -1,5 +1,5 @@
-import string
 import math
+import string
 from itertools import product
 
 from .fields import PathValue

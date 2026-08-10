@@ -1,5 +1,6 @@
-from django.db import models
 from typing import Any
+
+from django.db import models
 
 from .fields import PathField, PathValue
 from .managers import TreeManager

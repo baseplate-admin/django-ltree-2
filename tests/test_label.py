@@ -9,5 +9,5 @@ def test_label_generation():
 def test_automatic_name_creation():
     from taxonomy.models import Taxonomy
 
-    for i in range(0, 1000):
+    for i in range(1000):
         Taxonomy.objects.create_child(name=i)
