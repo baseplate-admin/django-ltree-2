@@ -1,59 +1,3 @@
-[project]
-name = "django-ltree-2"
-version = "0.1.13"
-description = "Continual of django-ltree with additional goodies"
-authors = [
-    { name = "baseplate-admin", email = "61817579+baseplate-admin@users.noreply.github.com" },
-    { name = "Mario César Señoranis Ayala", email = "mariocesar@humanzilla.com" },
-    { name = "Kimsia Sim" },
-]
-requires-python = ">=3.9"
-readme = "README.md"
-license = "MIT"
-maintainers = [
-    { name = "baseplate-admin", email = "61817579+baseplate-admin@users.noreply.github.com" },
-]
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Framework :: Django",
-    "Framework :: Django :: 4.2",
-    "Framework :: Django :: 5.0",
-    "Framework :: Django :: 5.1",
-    "Framework :: Django :: 5.2",
-    "Framework :: Django :: 6.0",
-    "Intended Audience :: Developers",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: Implementation :: PyPy",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-    "Programming Language :: Python :: 3.15",
-    "Programming Language :: Python :: 3",
-]
-dependencies = ["django>=3.2", "psycopg>=3"]
-
-[project.urls]
-"Bug Tracker" = "https://github.com/baseplate-admin/django-ltree-2/issues"
-homepage = "https://github.com/baseplate-admin/django-ltree-2"
-repository = "https://github.com/baseplate-admin/django-ltree-2"
-
-[dependency-groups]
-test = ["pytest>=8.0.1,<9", "pytest-django>=4.8.0,<5"]
-docs = [
-    "sphinx>=7.2.6,<8",
-    "myst-parser>=2",
-    "sphinx-reload>=0.2.0,<0.3",
-    "shibuya>=2024.6.1,<2026.0.0",
-]
-build = ["hatch"]
-
-[tool.uv]
-default-groups = ["test", "docs", "build"]
-
 [tool.hatch.build.targets.sdist]
 include = ["src/django_ltree"]
 
@@ -66,3 +10,73 @@ include = ["src/django_ltree"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[project]
+name = "django-ltree-2"
+version = "0.1.13"
+description = "Continual of django-ltree with additional goodies"
+authors = [
+    { name = "baseplate-admin", email = "61817579+baseplate-admin@users.noreply.github.com" },
+    { name = "Mario César Señoranis Ayala", email = "mariocesar@humanzilla.com" },
+    { name = "Kimsia Sim" },
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = "MIT"
+maintainers = [
+    { name = "baseplate-admin", email = "61817579+baseplate-admin@users.noreply.github.com" },
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Framework :: Django :: 6.1",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: 3",
+]
+dependencies = ["django>=5.2"]
+
+[project.urls]
+"Bug Tracker" = "https://github.com/baseplate-admin/django-ltree-2/issues"
+homepage = "https://github.com/baseplate-admin/django-ltree-2"
+repository = "https://github.com/baseplate-admin/django-ltree-2"
+
+[dependency-groups]
+test = ["pytest>=8.0.1,<9", "pytest-django>=4.8.0,<5", "psycopg[binary]"]
+docs = [
+    "sphinx>=7.2.6,<8",
+    "myst-parser>=2",
+    "sphinx-reload>=0.2.0,<0.3",
+    "shibuya>=2024.6.1,<2026.0.0",
+]
+build = ["hatch"]
+ipython = [
+    "ipython>=8.37.0",
+]
+
+[tool.uv]
+default-groups = ["test", "docs", "build"]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+        "E", # Errors
+        "F", # Pyflakes
+        "W", # Warnings about wrong format
+        "S", # Security
+        "T20", # Look for print() statements
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/{tests}/*" = ["S101", "F841"]
