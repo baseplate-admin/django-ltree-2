@@ -1,7 +1,6 @@
 from collections import UserList
 from collections.abc import Iterable
 
-from django import forms
 from django.db.models.fields import TextField
 from django.forms.widgets import TextInput
 

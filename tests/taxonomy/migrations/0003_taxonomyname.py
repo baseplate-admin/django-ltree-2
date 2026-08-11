@@ -7,7 +7,6 @@ import django_ltree.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("taxonomy", "0002_alter_taxonomy_managers_alter_taxonomy_path_and_more"),
     ]
