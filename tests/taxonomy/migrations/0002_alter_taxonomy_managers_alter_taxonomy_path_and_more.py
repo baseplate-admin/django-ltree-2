@@ -7,7 +7,6 @@ import django_ltree.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("taxonomy", "0001_initial"),
     ]
