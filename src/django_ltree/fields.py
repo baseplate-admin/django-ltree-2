@@ -1,21 +1,21 @@
 from collections import UserList
-from django import forms
-from django.core.validators import RegexValidator
+from collections.abc import Iterable
+
 from django.db.models.fields import TextField
 from django.forms.widgets import TextInput
 
-from collections.abc import Iterable
-
-path_label_validator = RegexValidator(
-    r"^(?P<root>[a-zA-Z0-9_-]+)(?:\.[a-zA-Z0-9_-]+)*$",
-    "A label is a sequence of alphanumeric characters and underscores separated by dots.",
-    "invalid",
-)
+from .forms import PathFormField
+from .validators import path_label_validator
 
 
 class PathValue(UserList):
     def __init__(self, value):
         if isinstance(value, str):
+            if "/" in value and "." in value:
+                raise ValueError(
+                    "PathValue cannot mix slashes and dots in the same value"
+                )
+
             split_by = "/" if "/" in value else "."
             value = value.strip().split(split_by) if value else []
         elif isinstance(value, int):
@@ -23,7 +23,7 @@ class PathValue(UserList):
         elif isinstance(value, Iterable):
             value = [str(v) for v in value]
         else:
-            raise ValueError("Invalid value: {!r} for path".format(value))
+            raise ValueError(f"Invalid value: {value!r} for path")
 
         super().__init__(initlist=value)
 
@@ -59,12 +59,8 @@ class PathValueProxy:
         instance.__dict__[self.field_name] = value
 
 
-class PathFormField(forms.CharField):
-    default_validators = [path_label_validator]
-
-
 class PathField(TextField):
-    default_validators = [path_label_validator]
+    default_validators = [path_label_validator]  # noqa: RUF012
 
     def db_type(self, connection):
         return "ltree"
@@ -89,9 +85,7 @@ class PathField(TextField):
         return str(PathValue(value))
 
     def to_python(self, value):
-        if value is None:
-            return value
-        elif isinstance(value, PathValue):
+        if value is None or isinstance(value, PathValue):
             return value
 
         return PathValue(value)

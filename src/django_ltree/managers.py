@@ -1,7 +1,8 @@
-from django.db import models
 from typing import TYPE_CHECKING
-from django_ltree.paths import PathGenerator
 
+from django.db import models
+
+from .fields import PathValue
 from .querysets import TreeQuerySet
 
 if TYPE_CHECKING:
@@ -9,6 +10,10 @@ if TYPE_CHECKING:
 
 
 class TreeManager(models.Manager):
+    def __init__(self, path_field="id", *args, **kwargs):
+        self.path_field = path_field
+        super().__init__(*args, **kwargs)
+
     def get_queryset(self) -> TreeQuerySet["TreeModel"]:
         """Returns a queryset with the models ordered by `path`"""
         return TreeQuerySet(model=self.model, using=self._db).order_by("path")
@@ -22,24 +27,67 @@ class TreeManager(models.Manager):
         return self.filter().children(path)
 
     def create_child(
-        self, parent: "TreeModel" = None, label: str = None, **kwargs
-    ) -> TreeQuerySet["TreeModel"]:
-        """Creates a tree child with or without parent"""
-        prefix = parent.path if parent else None
+        self, parent: "TreeModel | PathValue | None" = None, label=None, **kwargs
+    ):
+        """
+        create an item
+        `parent` can be an instance of the model or a PathValue object
+        if `parent` is None, item will be a root item
+        otherwise it'll be a child of that parent
+        """
+        kwargs.pop("path", None)
+        if not parent:
+            return self.create(label=label, **kwargs)
 
-        """If a label is not provided, we generate a new one, else we use it as suffix"""
-        if label is None:
-            paths_in_use = parent.children() if parent else self.roots()
-            path_generator = PathGenerator(
-                prefix,
-                skip=paths_in_use.values_list("path", flat=True),
+        prefix = parent.path if isinstance(parent, models.Model) else parent  # ty:ignore[unresolved-attribute]
+
+        obj = self._create(**kwargs)
+
+        path = PathValue([*prefix, label or getattr(obj, self.path_field)])
+        self.filter(**{self.path_field: getattr(obj, self.path_field)}).update(
+            path=path
+        )
+
+        obj.path = path
+
+        return obj
+
+    create_child.alters_data = True  # ty:ignore[unresolved-attribute]
+
+    def create(self, label=None, **kwargs):
+        """create an item with no parents (root)"""
+        kwargs.pop("path", None)
+        obj = self._create(**kwargs)
+
+        path = PathValue([label or getattr(obj, self.path_field)])
+        self.filter(**{self.path_field: getattr(obj, self.path_field)}).update(
+            path=path
+        )
+
+        obj.path = path
+
+        return obj
+
+    create.alters_data = True  # ty:ignore[unresolved-attribute]
+
+    def _create(self, **kwargs):
+        """
+        Create a new object with the given kwargs, saving it to the database
+        and returning the created object.
+        """
+        reverse_one_to_one_fields = frozenset(kwargs).intersection(
+            self.model._meta._reverse_one_to_one_field_names
+        )
+        if reverse_one_to_one_fields:
+            raise ValueError(
+                "The following fields do not exist in this model: {}".format(
+                    ", ".join(reverse_one_to_one_fields)
+                )
             )
-            path = next(path_generator)
-        else:
-            if prefix is None:
-                path = label
-            else:
-                path = str(prefix) + "." + label
 
-        kwargs["path"] = path
-        return self.create(**kwargs)
+        obj = self.model(**kwargs)
+        self._for_write = True
+        obj.save(force_insert=True, using=self.db)
+        return obj
+
+    _create.alters_data = True  # ty:ignore[unresolved-attribute]

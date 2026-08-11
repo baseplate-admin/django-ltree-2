@@ -50,6 +50,18 @@ docs = [
     "shibuya>=2024.6.1,<2026.0.0",
 ]
 build = ["hatch"]
+dev = [
+    "django-cmd>=3.0",
+]
+prek = ["prek"]
+
+[tool.django]
+settings_module = "tests.conf.settings"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.conf.settings"
+django_find_project = false
+pythonpath = ["." ,"django_ltree"]
 
 [tool.uv]
 default-groups = ["test", "docs", "build"]
