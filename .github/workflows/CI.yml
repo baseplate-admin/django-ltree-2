@@ -22,7 +22,7 @@ jobs:
                         "3.15-dev",
                         'pypy-3.11',
                     ]
-                postgres-version: ['14', '15', '16', '17',"18"]
+                postgres-version: ['15', '16', '17', "18"]
                 django-version: ["5.2", "6.0", "6.1"]
         continue-on-error: true
         services:
