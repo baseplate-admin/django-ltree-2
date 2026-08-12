@@ -43,7 +43,8 @@ class TreeModel(models.Model):
         )
 
     def add_child(self, slug: str, **kwargs) -> Any:
-        assert "path" not in kwargs
+        if "path" in kwargs:
+            raise ValueError("'path' cannot be provided to add_child")
         kwargs["path"] = self.path[:]
         kwargs["path"].append(slug)
         kwargs["slug"] = slug

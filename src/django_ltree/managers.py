@@ -29,7 +29,7 @@ class TreeManager(models.Manager):
         """Creates a tree child with or without parent"""
         prefix = parent.path if parent else None
 
-        """If a label is not provided, we generate a new one, else we use it as suffix"""
+        """If a label is not provided, we generate a new one; otherwise use it."""
         if label is None:
             paths_in_use = parent.children() if parent else self.roots()
             path_generator = PathGenerator(
