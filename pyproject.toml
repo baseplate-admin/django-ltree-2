@@ -65,7 +65,7 @@ select = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"**/{tests}/*" = ["S101", "F841"]
+"**/{tests}/*" = ["S101", "F841", "E501"]
 
 [tool.hatch.build.targets.sdist]
 include = ["src/django_ltree"]
