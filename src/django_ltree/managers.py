@@ -1,5 +1,7 @@
-from django.db import models
 from typing import TYPE_CHECKING
+
+from django.db import models
+
 from django_ltree.paths import PathGenerator
 
 from .querysets import TreeQuerySet
