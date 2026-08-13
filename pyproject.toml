@@ -39,7 +39,7 @@ homepage = "https://github.com/baseplate-admin/django-ltree-2"
 repository = "https://github.com/baseplate-admin/django-ltree-2"
 
 [dependency-groups]
-test = ["pytest>=8.0.1,<9", "pytest-django>=4.8.0,<5", "psycopg[binary]"]
+test = ["pytest>=8.0.1,<10", "pytest-django>=4.8.0,<5", "psycopg[binary]"]
 docs = [
     "sphinx>=7.2.6,<8",
     "myst-parser>=2",
