@@ -457,7 +457,7 @@ requires-dist = [{ name = "django", specifier = ">=5.2" }]
 build = [{ name = "hatch" }]
 docs = [
     { name = "myst-parser", specifier = ">=2" },
-    { name = "shibuya", specifier = ">=2024.6.1,<2026.0.0" },
+    { name = "shibuya", specifier = ">=2024.6.1,<2027.0.0" },
     { name = "sphinx", specifier = ">=7.2.6,<8" },
     { name = "sphinx-reload", specifier = ">=0.2.0,<0.3" },
 ]
@@ -1212,15 +1212,15 @@ wheels = [
 
 [[package]]
 name = "shibuya"
-version = "2025.10.21"
+version = "2026.7.12"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pygments-styles" },
     { name = "sphinx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/17/e8/462f93f31465220542ee8f1e415819d9e96da78694dc6d04a96dbbf0011f/shibuya-2025.10.21.tar.gz", hash = "sha256:a668f2a33c8b57d33d78bd6edf723eece5734d01f129f973333e7096ad6b3690", size = 82108, upload-time = "2025-10-21T06:03:40.444Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ba/d2/8017988e02791162b286576116fedd200ed33e8d8af3579ab3587df3d3d0/shibuya-2026.7.12.tar.gz", hash = "sha256:9496606f5b95595511ad86b773d74b4b8d694a4dcc2f848e6ec34e2ad71d9060", size = 86545, upload-time = "2026-07-11T15:41:16.342Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/15/f4/cfad1fb1395e3756ea8eee7db9510c8dbe6796bb6c34eac2eac50650df9c/shibuya-2025.10.21-py3-none-any.whl", hash = "sha256:916e48c97ba5cc4b1949742beac19cf48923e12965a0d1689fda460d363f4d82", size = 98077, upload-time = "2025-10-21T06:03:38.571Z" },
+    { url = "https://files.pythonhosted.org/packages/84/70/9ca2b8187666be1bcfa82b938107247159f5b566a22b5e43be27df45039d/shibuya-2026.7.12-py3-none-any.whl", hash = "sha256:0a2c0c109e7cc47fc650b01feb671d267c0ffe2e39c98f3529e32d723a9c9d9b", size = 104092, upload-time = "2026-07-11T15:41:14.936Z" },
 ]
 
 [[package]]

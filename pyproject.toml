@@ -44,7 +44,7 @@ docs = [
     "sphinx>=7.2.6,<8",
     "myst-parser>=2",
     "sphinx-reload>=0.2.0,<0.3",
-    "shibuya>=2024.6.1,<2026.0.0",
+    "shibuya>=2024.6.1,<2027.0.0",
 ]
 build = ["hatch"]
 ipython = ["ipython>=8.37.0"]
