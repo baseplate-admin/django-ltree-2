@@ -23,23 +23,16 @@ pip install django-ltree-2
 Then add `django_ltree` to `INSTALLED_APPS` in your Django project settings.
 
 ```python
-INSTALLED_APPS = [
-    ...,
-    'django_ltree',
-    ...
-]
+INSTALLED_APPS = [..., "django_ltree", ...]
 ```
 
 Then use it like this:
 
 ```python
-
 from django_ltree.models import TreeModel
 
 
-class CustomTree(TreeModel):
-    ...
-
+class CustomTree(TreeModel): ...
 ```
 
 ## Requires
